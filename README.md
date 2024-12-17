@@ -34,27 +34,13 @@ Biostar   cell_line_to_command_line_v2   dsatcl  'Machine Learning'
 > Note: in the example above ```/home/dst/``` is the default directory in the docker container from this book, and after using the ```ls``` command in the data directory I can view all of the sub-directories that were in my Comp_Bio folder inside the Docker container. 
  
 ## Obtaining Data
-Begin by navigating to the directory where the data from this book is stored, then navigate to the chapter 3 sub-foder, as demonstrated in the code below (use your own file path):
-
-```bash
-$ cd ~/Desktop/Comp_Bio/dsatcl/dsatcl-data/ch03
-$ ls -l
-total 0
--rw-r--r--@ 1 evanpeikon  staff   626K Mar  9  2023 logs.tar.gz
--rw-r--r--@ 1 evanpeikon  staff   189K Mar  9  2023 r-datasets.db
--rw-r--r--@ 1 evanpeikon  staff   149B Mar  9  2023 tmnt-basic.csv
--rw-r--r--@ 1 evanpeikon  staff   148B Mar  9  2023 tmnt-missing-newline.csv
--rw-r--r--@ 1 evanpeikon  staff   181B Mar  9  2023 tmnt-with-header.csv
--rw-r--r--@ 1 evanpeikon  staff    91K Mar  9  2023 top2000.xlsx
-```
-
 ### Copying Local Files to the Docker Container
-A common situation is that you already have the necessary files on your own computer. This section explains how you can get those files into the Docker container.
+A common situation is that you already have the necessary files on your own computer. This section explains how you can get those files into the Docker container. 
 
-As mentioned previously, a Docker container is an isolated virtual environment. However, there is one exception to that: files can be transferred in and out of the Docker container
+As mentioned previously, a Docker container is an isolated virtual environment. However, there is one exception to that: files can be transferred in and out of the Docker container. The local directory from when you executed the ```docker run``` command is mapped to a directory inside the Docker container (in the example above, ```/data```). Now, if I have any files on my local computer, I can transfer them into the mapper directory (```Comp_Bio``` in the example from the last section), and then they will be available in the Docker container under ```/data```. 
 
- mentioned in Chapter 2 that the Docker container is an isolated virtual environment. Luckily there is one exception to that: files can be transferred in and out the Docker container. The local directory from which you ran docker run, is mapped to a directory in the Docker container. This directory is called /data. Note that this is not the home directory, which is /home/dst.
+> Note: In practice I may not want to just transfer a local file into the Comp_Bio folder on my Desktop since I may have trouble finding it later (assuming it was originally elsewhere for a reason). Instead, I can copy the desired file, then put the copy in Comp_Bio, enabling me to run command-line tools on it in the Docker container.
 
-If you have one or more files on your local computer, and you want to apply some command-line tools to them, all you have to do is copy or move the files to that mapped directory. Let’s assume that you have a file called logs.csv in your Downloads directory.
+### Downloading Files from the Internet
 
 
