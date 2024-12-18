@@ -1,6 +1,6 @@
 # Data Science at the Command Line
 
-## Getting Started
+## 🐍 Getting Started With Docker
 This book uses many different command-line tools. Many of these commnand-line tools are pre-installed with Unix, or are available in packages. However, this book will also use tools that are not avaiable as packages and require manual instalation. In order to aquire these tools without having to go through the installation process of each, you can install the Docker image created for this book. 
 
 A Docker image is a bundle of one or more applications together with all their dependencies, and a Docker container is an isolated environment that runs an image. To install the Docker image for this book, you first need to download and install Docker itself from the Docker website. Once Docker is installed, you invoke the following command on your terminal or command prompt to download and run the Docker image (you can run this code from any directory):
@@ -33,7 +33,6 @@ Biostar   cell_line_to_command_line_v2   dsatcl  'Machine Learning'
 
 > Note: in the example above ```/home/dst/``` is the default directory in the docker container from this book, and after using the ```ls``` command in the data directory I can view all of the sub-directories that were in my Comp_Bio folder inside the Docker container. 
  
-## Obtaining Data
 ### Copying Local Files to the Docker Container
 A common situation is that you already have the necessary files on your own computer. This section explains how you can get those files into the Docker container. 
 
@@ -41,6 +40,17 @@ As mentioned previously, a Docker container is an isolated virtual environment. 
 
 > Note: In practice I may not want to just transfer a local file into the Comp_Bio folder on my Desktop since I may have trouble finding it later (assuming it was originally elsewhere for a reason). Instead, I can copy the desired file, then put the copy in Comp_Bio, enabling me to run command-line tools on it in the Docker container.
 
-### Downloading Files from the Internet
+## 🐍 Creating Command-Line Tools
 
+There are many command-line tools that can be executed with a single line of code. These are commonly called one-liners or pipelines. The ability to perform complex tasks with a single one-liner is one of the most powerful features of working in the command-line. 
+
+In bioinformatics you'll encounter some tasks that you perform just once, which tend to be very specific to a single dataset, and others that you repeat frequently which can be generalized to many experiments. If you find yourself repeating a certain one-liner regularly, say, for quality control of sequencing reads or formatting genomic data, it’s worth turning it into a reusable command-line tool. Both one-liners and command-line tools have their place, and learning when to use each takes experience.
+
+In this section we'll explore how to turn useful one-liners into robust, reusable command-line tools. 
+
+### Converting One-Liners into Shell Scripts
+
+For bioinformatics scientists, many workflows involve repetitive tasks like processing text, parsing sequences, or analyzing large datasets. Automating these tasks can save significant time and effort. In this sub-section, we’ll take a one-liner command that processes text data and turn it into a reusable shell script—an essential skill for building command-line tools.
+
+**Scenario**: Let’s say we want to extract the most frequently occurring words in a dataset, such as a genome annotation file or a research paper. In this case study we'll explore how to  convert a one-liner into a reusable scrip, using the text of Alice’s Adventures in Wonderland as an example. 
 
