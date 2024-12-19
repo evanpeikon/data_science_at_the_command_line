@@ -141,3 +141,44 @@ $ mv top-words.sh /usr/local/bin/top-words
 Now the script can be executed from anywhere. For example, with the ```$ code top-words https://www.gutenberg.org/files/11/11-0.txt```. 
 
 ### Creating Command-line Tools with Python
+In the previous section we created a command-line tool written in Bash. However, the command line is language agnostic and we don't necessarily have to use Bash to create command line tools.  
+
+There are three main reasons for creating command-line tools in another programming language than Bash. First, you may already have some code that you’d like to be able to use from the command line. Second, the command-line tool would end up encompassing more than a hundred lines of Bash code. Third, the command-line tool needs to be more safe and robust (Bash lacks many features such as type checking).
+
+In this section we'll discuss how to create command-line tools using Python, using the same general framework as the previous section with a key exception, which is that whatever relevant code we want to turn into a command-line tool should be written into a new file. Additionally, command-line tools written in Python need to specify Python as the interpreter after the shebang. For example, instead of ```#!/usr/bin/env bash``` you should type ```#!/usr/bin/env python```. 
+
+#### **Step 1:** Re-write top-words.sh as a python script. 
+First, we'll create a script called top-words.py
+
+```bash
+$ nano top-words.py
+```
+```python
+#!/usr/bin/env python
+
+import re
+import sys
+from collections import counter
+from urllib.request import urlopen
+
+def top_words(text,n):
+        with urlopen("https://raw.githubusercontent.com/stopwords-iso/stopwords-en/master/stopwords-en.tx>
+                stopwords = f.read().decode('utf-8').split('\n')
+        words = re.findall("[a-z']{2,}", text.lower())
+        words = (w for w in words if w not in stopwords)
+        for word, count in Counter(words).most_common(n):
+                print(f"{count:>7} {word}")
+
+if __name__ == '__main__':
+        text = sys.stdin.read()
+        try:
+                n = int(sys.argv[1])
+        except:
+                n=10
+        top_words(text,n)
+```
+
+Notably, for this specific task Python requires much more code than Bash. This illustrates that, for some tasks, it is better to use the command line. For other tasks, you may better off using a programming language. As you gain more experience on the command line, you will start to recognize when to use which approach. When everything is a command-line tool, you can even split up the task into subtasks, and combine a Bash command-line tool with, say, a Python command-line tool. Whichever approach works best for the task at hand.
+
+
+
