@@ -180,5 +180,4 @@ if __name__ == '__main__':
 
 Notably, for this specific task Python requires much more code than Bash. This illustrates that, for some tasks, it is better to use the command line. For other tasks, you may better off using a programming language. As you gain more experience on the command line, you will start to recognize when to use which approach. When everything is a command-line tool, you can even split up the task into subtasks, and combine a Bash command-line tool with, say, a Python command-line tool. Whichever approach works best for the task at hand.
 
-
-
+## 🐍 Projet Management With Make
